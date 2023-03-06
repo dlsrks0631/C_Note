@@ -20,7 +20,7 @@
 
 
 void: 리턴값이 없는 함수의 자료형
-bool: 참, 거짓을 저장 (= char)
+bool: 진리값(참/거짓)을 저장 (= char)
 
 < 2진법 >
 10진법 > 평소 사용하는 숫자 
@@ -58,3 +58,76 @@ int main() {
     printf("%c의 ASCII 값: %d", a, a); // R의 ASCII값: 82
 }
 ```
+
+< 연산자 >
+> 산술연산자: 수학적인 연산 ex) + - * / = += -= *= 
+> a += 6 >> a = a + 6
+> a %= 6 >> a = a % 6
+> a ++ >> a = a + 1
+> 비교연산자
+> =: 대입 ==: 같다
+> 논리연산자 &&(and) ||(or) !(not)
+
+< 전치 && 후치 >
+(ex)
+int main() {
+    int a = 10;
+    int b;
+    b = ++a;
+
+    printf("전치 증가 연산\n");
+    printf("a: %d\n", a);   // 11
+    printf("b: %d\n", b);   // 11
+
+    a = 10;
+    b = a++; // b에 a를 저장하고 a에 1을 더해줌
+
+    printf("후치 증가 연산\n");
+    printf("a: %d\n", a);   // 11
+    printf("b: %d\n", b);   // 10
+}
+
+< Switch문 >
+(ex)
+```
+int main() {
+    int choice;
+    scanf("%d", &choice);
+
+    switch (choice){ // switch(변수이름)
+    case 1:
+        printf("새 게임.\n");
+        break; // > 필수
+
+    case 2:
+        printf("불러오기.\n");
+        break;
+
+    case 3:
+        printf("설정.\n");
+        break;
+    default:    // == else
+        printf("잘못 입력하셨습니다.");
+    }
+}
+```
+
+< 반복문 while / for >
+> 조건이 만족하는 동안 코드 실행
+> 무한반복 > while(true) 사용
+> do-while > 조건을 만족하는 지 여부와 상관없이 처음 한 번은 무조건 실행
+(ex)
+```
+int main() {
+    int i = 1;
+    do {
+        printf("%d\n", i);
+        i++;
+    } while (i <= 10);
+
+    for (int i = 1; i <= 10; i++) { // for(초기화; 조건; 증감)
+        printf("%d\n", i);
+    }
+}
+```
+
