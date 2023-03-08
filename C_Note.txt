@@ -1,3 +1,5 @@
+C / C++ Recap
+
 < 자료형 >
 바이트: 컴퓨터에서 데이터를 처리하는 가장 작은 단위
 8비트 = 1바이트
@@ -113,6 +115,7 @@ int main() {
 ```
 
 < 반복문 while / for >
+> while(조건식) / for(초기식;조건식;증감식)
 > 조건이 만족하는 동안 코드 실행
 > 무한반복 > while(true) 사용
 > do-while > 조건을 만족하는 지 여부와 상관없이 처음 한 번은 무조건 실행
@@ -131,3 +134,111 @@ int main() {
 }
 ```
 
+< 배열 >
+> 중괄호로 초기화
+> 2차원 배열 > [세로][가로]
+(ex)
+```
+int arr[3][4] = {
+    {1,2,3,4},
+    {2,3,4,5},
+    {3,4,5,6}
+};
+```
+
+< 문자열 >
+> 문자 열거
+> 문자열 끝에는 항상 Null문자 붙음
+> 문자열을 입력 받을 때는 scanf에 포인터 붙이지 않음
+(ex)
+```
+char arr[] = "Hello, world!";
+printf("%s\n", arr); // %s > 모든 문자를 보여줌
+
+char s[100];
+scanf("%s", s); // 앞에 포인터 안붙임
+```
+> 문자열 관련 함수 > #include <string.h>
+(ex)
+```
+#include <string.h>
+
+int main() {
+    char str[100] = "Hello";
+
+    int len;
+    len = strlen(str); // 문자열 길이 출력 > 5
+
+    char str1[] = "Hello world";
+    char str2[100];
+
+    // strcpy(복사를 받아야할 문자열, 원본 문자열);
+    strcpy(str2, str1);
+
+    strcat(str, "World"); // 뒤에 문자열을 붙여줌
+    
+    // str1과 str2 같으면 0
+    // str1이 str2보다 앞에 있으면 -1
+    // str1이 str2보다 뒤에 있으면 1
+    int cmp = strcmp(str1,str2);
+
+}
+```
+
+< 비트 연산자 / define>
+> define 
+> 가독성과 유지보수를 위해 사용
+
+> 비트 곱(&), 합(|), xor(^), 반전(~)
+> 비트 단위로 연산을 진행
+> & 둘다 1인 경우 1
+> | 둘중 하나라도 1 이면 1
+> ^ 같으면 0, 다르면 1
+> ~1은 
+
+(ex)
+```
+#define HUNGRY   0*001
+#define THIRSTY  0*002
+#define TIRED    0*004
+#define FIRE     0*008
+
+#define HUNGRY2   0*010
+#define THIRSTY2  0*020
+#define TIRED2    0*040
+#define FIRE2     0*080
+
+unsigned char byte = 13;
+byte <<= 3; // 2^n 배수
+byte >>= 1; // 2^n 나눈 몫
+
+unsigned int iStatus = 0;
+
+// 상태 추가
+iStatus |= HUNGRY;
+iStatus |= THIRSTY;
+
+// 상태 확인
+if (iStatus & THIRSTY) {}
+
+// 특정 자리 비트 제거
+iStatus &= ~THIRSTY;
+```
+
+< 변수 >
+> 1. 지역변수 > main 함수 안에서 선언된 변수
+> 같은 지역끼리 우선순위가 높음(괄호 안에 선언된 변수) / 같은 지역에서 같은 이름의 변수 지정 X
+> 2. 전역변수 > main 함수 밖에 선언된 변수
+> 3. 정적변수 >
+> 4. 외부변수 >
+
+< 함수 >
+> 하나의 기능을 지정해놓은 것
+(ex)
+```
+int Add(int left, int right) { > left, right 변수도 Add 안에 생성된 변수들로 Add라는 함수 안의 지역변수
+    return left + right
+}
+
+data = Add(10,20);
+```
