@@ -19,8 +19,6 @@
 3. unsigned / signed
 
 - 부호 생각 여부
-
-- void: 리턴값이 없는 함수의 자료형
 - bool: 진리값(참/거짓)을 저장 (= char)
 
 #### 2진법
@@ -440,6 +438,7 @@ int main() {
 * 배열의 특징
     - 메모리가 연속적인 구조 !!
     - 배열의 이름은 배열의 시작 주소이다
+* 해당 함수 쪽에서 선언한 지역변수를 수정하고 싶을 때 포인터 사용
 
 (ex)
 ```
@@ -452,6 +451,7 @@ int main() {
 }
 ```
 ```
+// 포인터 이해
 int main() {
     short sArr[10] = {1,2,3,4,5,6,7,8,9,10};
     int *pI = (int*)sArr;
@@ -464,3 +464,39 @@ int main() {
     printf("%d\n", iData); // 257
 }
 ```
+
+#### const && 포인터
+* 상수를 선언할 때 쓰임
+- 일반적으로 변수처럼 수정할 순 없기에 포인터로 접근해서 수정해야함
+* l-value(변수) = r-value(상수)
+
+(ex)
+```
+int main() {
+    int a = 0;
+    int* pInt = &a;
+
+    *pInt = 1;
+    pInt = nullptr;
+
+    // ===========
+    // const 포인터
+    // ===========
+    int b = 0;
+    const int* pConstInt = &a;
+    // 오류 *pConstInt = 100; // 원본 데이터를 바꿀 수 없음
+
+    // ===========
+    // 포인터 const
+    // ===========
+    int* const pIntConst = &a;
+    *pIntConst = 400;
+    // 오류 pIntConst = &b; // 가리키는 원본을 수정할 수 없음
+
+    // 초기화 시 가리킨 대상만 가리킴, 가리키는 원본을 수정 할 수 없음
+    const int* const pConstIntConst = nullptr;
+}
+```
+
+#### void 
+* 리턴값이 없는 함수의 자료형, 반환 타입을 적어주지 않아도 됨
